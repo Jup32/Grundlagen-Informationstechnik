@@ -1,0 +1,7 @@
+C:\Users\alexp\Desktop\Visual Studio Code\63 Interaktiv - Lernprogramm\bin\Debug\63 Interaktiv - Lernprogramm.exe.config
+C:\Users\alexp\Desktop\Visual Studio Code\63 Interaktiv - Lernprogramm\bin\Debug\63 Interaktiv - Lernprogramm.exe
+C:\Users\alexp\Desktop\Visual Studio Code\63 Interaktiv - Lernprogramm\bin\Debug\63 Interaktiv - Lernprogramm.pdb
+C:\Users\alexp\Desktop\Visual Studio Code\63 Interaktiv - Lernprogramm\obj\Debug\63 Interaktiv - Lernprogramm.csproj.AssemblyReference.cache
+C:\Users\alexp\Desktop\Visual Studio Code\63 Interaktiv - Lernprogramm\obj\Debug\63 Interaktiv - Lernprogramm.csproj.CoreCompileInputs.cache
+C:\Users\alexp\Desktop\Visual Studio Code\63 Interaktiv - Lernprogramm\obj\Debug\63 Interaktiv - Lernprogramm.exe
+C:\Users\alexp\Desktop\Visual Studio Code\63 Interaktiv - Lernprogramm\obj\Debug\63 Interaktiv - Lernprogramm.pdb
