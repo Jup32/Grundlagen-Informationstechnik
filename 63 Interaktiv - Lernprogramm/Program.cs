@@ -45,26 +45,36 @@ namespace _63_Interaktiv___Lernprogramm
                 }
 
             }
-
             return eingabe;
         }
 
 
-        static void StarteFragen(string[] thema)
+        static void StarteFragen(string[] thema, string[] lösung)
         {
             // Logik einfügen
             // 1. Frage stellen // for each(Frage in fragen) {  while(Frage falsch) { stelle frage }   }
             // 2. Antwort einlesen
             // 3. Antwort mit Lösung vergleichen bei falsch weiter probieren oder ende sagen bei richtig punkte erhöhen und weiter machen // 2tes array mit antworten mitgeben
+
+            foreach (string frage in thema)
+            {
+
+            }
         }
 
         static void Main(string[] args)
         {
             string[] fragenVerzweigung = new string[10];
+            string[] lösungVerzweigung = new string[10];
             string[] fragenSchleifen = new string[10];
+            string[] lösungSchleifen = new string[10];
             string[] fragenArrays = new string[10];
+            string[] lösungArrays = new string[10];
             string[] fragenDatentypen = new string[10];
+            string[] lösungDatentypen = new string[10];
             string[] fragenStrings = new string[10];
+            string[] lösungStrings = new string[10];
+
             // Hauptmenü-Logik wie zuvor
             Console.Title = "63 Interaktiv - Lernprogramm";
 
@@ -83,19 +93,19 @@ namespace _63_Interaktiv___Lernprogramm
             switch (themenAuswahl)
             {
                 case 1:
-                    StarteFragen(fragenVerzweigung);
+                    StarteFragen(fragenVerzweigung, lösungVerzweigung);
                     break;
                 case 2:
-                    StarteFragen(fragenSchleifen);
+                    StarteFragen(fragenSchleifen, lösungSchleifen);
                     break;
                 case 3:
-                    StarteFragen(fragenArrays);
+                    StarteFragen(fragenArrays, lösungArrays);
                     break;
                 case 4:
-                    StarteFragen(fragenDatentypen);
+                    StarteFragen(fragenDatentypen, lösungDatentypen);
                     break;
                 case 5:
-                    StarteFragen(fragenStrings);
+                    StarteFragen(fragenStrings, lösungStrings);
                     break;
             }
         }
