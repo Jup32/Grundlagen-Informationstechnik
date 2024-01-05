@@ -25,6 +25,7 @@ namespace _63_Interaktiv___Lernprogramm
                 Console.WriteLine("5. Strings");
                 Console.WriteLine("6. Programm beenden");
                 Console.Write("Wählen Sie eine Option: ");
+                Console.ResetColor();
                 bool eingabeIstZahl = int.TryParse(Console.ReadLine(), out eingabe);
 
                 if (eingabe > 1 && eingabe < 6 || !eingabeIstZahl)
@@ -51,6 +52,8 @@ namespace _63_Interaktiv___Lernprogramm
 
         static void StarteFragen(string[] thema, string[] lösung)
         {
+            bool weitermachen = true;
+            int i = 0;
             // Logik einfügen
             // 1. Frage stellen // for each(Frage in fragen) {  while(Frage falsch) { stelle frage }   }
             // 2. Antwort einlesen
@@ -58,7 +61,38 @@ namespace _63_Interaktiv___Lernprogramm
 
             foreach (string frage in thema)
             {
+                weitermachen = true;
+                while (weitermachen)
+                {
+                    int fragenRichtig = 0;
 
+                    Console.ForegroundColor = ConsoleColor.Cyan;
+                    Console.WriteLine("Frage {0}: {1}", i + 1, frage);
+                    Console.Write("Antwort: ");
+                    Console.ResetColor();
+                    string antwort = Console.ReadLine();
+
+                    if (antwort == lösung[i])
+                    {
+                        Console.ForegroundColor = ConsoleColor.Green;
+                        Console.WriteLine("Das ist richtig sie haben {0} von {1} Fragen richtig beantwortet", fragenRichtig, i + 1);
+                        Console.ResetColor();
+                        weitermachen = false;
+                        fragenRichtig++;
+                    }
+                    else
+                    {
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.WriteLine("Das ist falsch");
+                        Console.ResetColor();
+                        weitermachen = true;
+                    }
+                    Console.ForegroundColor = ConsoleColor.Yellow;
+                    Console.WriteLine("Enter zum fortfahren");
+                    Console.ReadLine();
+                    Console.ResetColor();
+                    Console.Clear();
+                }
             }
         }
 
@@ -75,6 +109,60 @@ namespace _63_Interaktiv___Lernprogramm
             string[] fragenStrings = new string[10];
             string[] lösungStrings = new string[10];
 
+            fragenVerzweigung[0] = "Wozu braucht man Verzweigungen in Programmen nicht?\n" +
+                                   "A: Um Entscheidungen zu treffen\n" +
+                                   "B: Um komplexere Lösungen zu entwickeln\n" +
+                                   "C: Um Teil Code mehrmals auszuführen";
+            lösungVerzweigung[0] = "C";
+
+            fragenVerzweigung[1] = "Schreiben sie die erste Zeile einer wenn Funktion die wahr ist wenn a den wert 5 hat";
+            lösungVerzweigung[1] = "if(a == 5)";
+
+            fragenVerzweigung[2] = "Geben sie den Wert ein den der folgende code ausgibt:\n" +
+                                   "    int a = 5;\n" +
+                                   "    int b = 2;\n" +
+                                   "    int c;\n" +
+                                   "\n" +
+                                   "    if(a < b)\n" +
+                                   "    {\n" +
+                                   "        Console.WriteLine(\"7\")\n" +
+                                   "    }\n" +
+                                   "    else if(a%b == 1)\n" +
+                                   "    {\n" +
+                                   "        Console.WriteLine(\"A\")\n" +
+                                   "    }\n" +
+                                   "    \n" +
+                                   "    switch(a++)\n" +
+                                   "    {\n" +
+                                   "        case 1:\n" +
+                                   "        case 2:\n" +
+                                   "            Console.WriteLine(\"3\")\n" +
+                                   "            c = 1\n" +
+                                   "            break;\n" +
+                                   "\n" +
+                                   "        case 3:\n" +
+                                   "        case 4:\n" +
+                                   "            Console.WriteLine(\"4\")\n" +
+                                   "            c = 2;\n" +
+                                   "            break;\n" +
+                                   "\n" +
+                                   "        case 5:\n" +
+                                   "        case 6:\n" +
+                                   "            Console.WriteLine(\"B\")\n" +
+                                   "            c = 3;\n" +
+                                   "            break;\n" +
+                                   "    }\n" +
+                                   "\n" +
+                                   "    if(c >= 3)\n" +
+                                   "    {\n" +
+                                   "        Console.WriteLine(\"B\")\n" +
+                                   "    }\n" +
+                                   "    else\n" +
+                                   "    {" +
+                                   "        Console.WriteLine(\"9\")\n" +
+                                   "    }";
+            lösungVerzweigung[2] = "ABC";
+
             // Hauptmenü-Logik wie zuvor
             Console.Title = "63 Interaktiv - Lernprogramm";
 
@@ -86,7 +174,7 @@ namespace _63_Interaktiv___Lernprogramm
             Console.WriteLine("Viel Spaß und Erfolg beim Lernen!");
             Console.WriteLine();
             Console.ResetColor();
-            Console.ReadKey();
+            Console.ReadLine();
 
             int themenAuswahl = ShowMenu();
 
