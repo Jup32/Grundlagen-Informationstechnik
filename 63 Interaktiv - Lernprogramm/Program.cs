@@ -1,31 +1,70 @@
-﻿using System;
+using System;
+
 
 namespace _63_Interaktiv___Lernprogramm
 {
     internal class Program
     {
-        class Frage
-        {
-            public string Text;
-            public string[] Optionen;
-            public char RichtigeAntwort;
 
-            public Frage(string text, string[] optionen, char richtigeAntwort)
+        static int ShowMenu()
+        {
+            Console.Clear();
+            bool eingabeIstKorrekt = false;
+            int eingabe = 0;
+            // Console.Clear(); // Löscht den Bildschirm für eine saubere Darstellung
+
+            while (!eingabeIstKorrekt)
             {
-                Text = text;
-                Optionen = optionen;
-                RichtigeAntwort = richtigeAntwort;
+                Console.ForegroundColor = ConsoleColor.Cyan; // Setzt die Textfarbe auf Cyan für das Menü
+                                                             // Ausgabe der Menüoptionen
+                Console.WriteLine("Hauptmenü:");
+                Console.WriteLine("1. Verzweigungen");
+                Console.WriteLine("2. Schleifen");
+                Console.WriteLine("3. Arrays");
+                Console.WriteLine("4. Datentypen");
+                Console.WriteLine("5. Strings");
+                Console.WriteLine("6. Programm beenden");
+                Console.Write("Wählen Sie eine Option: ");
+                bool eingabeIstZahl = int.TryParse(Console.ReadLine(), out eingabe);
+
+                if (eingabe > 1 && eingabe < 6 || !eingabeIstZahl)
+                {
+                    eingabeIstKorrekt = false;
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine("Eingabe ist falsch");
+                    Console.ForegroundColor = ConsoleColor.Yellow;
+                    Console.WriteLine("Enter zum fortfahren");
+                    Console.ReadLine();
+                    Console.ResetColor();
+                    Console.Clear();
+                }
+                else
+                {
+                    Console.Clear();
+                    break;
+                }
+
             }
+
+            return eingabe;
         }
 
-        static Frage[] fragenVerzweigungen;
-        static Frage[] fragenSchleifen;
-        static Frage[] fragenArrays;
-        static Frage[] fragenDatentypen;
-        static Frage[] fragenStrings;
+
+        static void StarteFragen(string[] thema)
+        {
+            // Logik einfügen
+            // 1. Frage stellen // for each(Frage in fragen) {  while(Frage falsch) { stelle frage }   }
+            // 2. Antwort einlesen
+            // 3. Antwort mit Lösung vergleichen bei falsch weiter probieren oder ende sagen bei richtig punkte erhöhen und weiter machen // 2tes array mit antworten mitgeben
+        }
 
         static void Main(string[] args)
         {
+            string[] fragenVerzweigung = new string[10];
+            string[] fragenSchleifen = new string[10];
+            string[] fragenArrays = new string[10];
+            string[] fragenDatentypen = new string[10];
+            string[] fragenStrings = new string[10];
             // Hauptmenü-Logik wie zuvor
             Console.Title = "63 Interaktiv - Lernprogramm";
 
@@ -37,67 +76,30 @@ namespace _63_Interaktiv___Lernprogramm
             Console.WriteLine("Viel Spaß und Erfolg beim Lernen!");
             Console.WriteLine();
             Console.ResetColor();
+            Console.ReadKey();
 
-            while (true) // Eine Endlosschleife, um das Menü kontinuierlich anzuzeigen
+            int themenAuswahl = ShowMenu();
+
+            switch (themenAuswahl)
             {
-                // Console.Clear(); // Löscht den Bildschirm für eine saubere Darstellung
-                Console.ForegroundColor = ConsoleColor.Cyan; // Setzt die Textfarbe auf Cyan für das Menü
-                                                             // Ausgabe der Menüoptionen
-                Console.WriteLine("Hauptmenü:");
-                Console.WriteLine("1. Verzweigungen");
-                Console.WriteLine("2. Schleifen");
-                Console.WriteLine("3. Arrays");
-                Console.WriteLine("4. Datentypen");
-                Console.WriteLine("5. Strings");
-                Console.WriteLine("6. Programm beenden");
-                Console.Write("Wählen Sie eine Option: ");
-                string auswahl = Console.ReadLine(); // Liest die Benutzereingabe
-
-                switch (auswahl) // Verarbeitet die Benutzereingabe
-                {
-                    case "1":
-                        ModulVerzweigungen(); // Ruft das Modul Verzweigungen auf
-                        break;
-                    // Füge hier Aufrufe für weitere Module hinzu...
-                    case "6":
-                        return; // Beendet das Programm
-                    default:
-                        Console.ForegroundColor = ConsoleColor.Red; // Fehlermeldung in Rot
-                        Console.WriteLine("Ungültige Eingabe. Bitte versuchen Sie es erneut.");
-                        Console.ResetColor(); // Setzt die Farbe zurück
-                        break;
-                }
+                case 1:
+                    StarteFragen(fragenVerzweigung);
+                    break;
+                case 2:
+                    StarteFragen(fragenSchleifen);
+                    break;
+                case 3:
+                    StarteFragen(fragenArrays);
+                    break;
+                case 4:
+                    StarteFragen(fragenDatentypen);
+                    break;
+                case 5:
+                    StarteFragen(fragenStrings);
+                    break;
             }
         }
 
-        static void ModulVerzweigungen()
-        {
-            // Logik für das Modul Verzweigungen
-            Console.Clear(); // Leert die Konsole für das Modul
-                             // Logik für das Modul Verzweigungen
-                             // Beispielsweise eine Schleife, die 12 Fragen stellt und die Antworten überprüft
-                             // Nach Abschluss der Fragen kehrt das Programm zum Hauptmenü zurück
-        }
-
-        static void ModulSchleifen()
-        {
-            // Logik für das Modul Schleifen
-        }
-
-        static void ModulArrays()
-        {
-            // Logik für das Modul Arrays
-        }
-
-        static void ModulDatentypen()
-        {
-            // Logik für das Modul Datentypen
-        }
-
-        static void ModulStrings()
-        {
-            // Logik für das Modul Strings
-        }
 
         // Weitere Methoden und Logik...
         // Hier würde die Hauptlogik des interaktiven Lernprogramms implementiert werden.
