@@ -53,6 +53,7 @@ namespace _63_Interaktiv___Lernprogramm
 
         static void StarteFragen(string[] thema, string[] lösung)
         {
+            // falls die Version von C# unter 8.0 ist das Fragezeichen bei "string? antwort;" löschen
             string? antwort;
             decimal i;
             decimal fragenRichtig = 0;
