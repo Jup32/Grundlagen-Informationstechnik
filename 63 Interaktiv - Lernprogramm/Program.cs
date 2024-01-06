@@ -1,4 +1,5 @@
 using System;
+using System.Runtime.ExceptionServices;
 
 
 namespace _63_Interaktiv___Lernprogramm
@@ -52,54 +53,79 @@ namespace _63_Interaktiv___Lernprogramm
 
         static void StarteFragen(string[] thema, string[] lösung)
         {
-            bool weitermachen = true;
-            int i = 0;
-            // Logik einfügen
-            // 1. Frage stellen // for each(Frage in fragen) {  while(Frage falsch) { stelle frage }   }
-            // 2. Antwort einlesen
-            // 3. Antwort mit Lösung vergleichen bei falsch weiter probieren oder ende sagen bei richtig punkte erhöhen und weiter machen // 2tes array mit antworten mitgeben
-
-            foreach (string frage in thema)
+            string? antwort;
+            decimal i;
+            decimal fragenRichtig = 0;
+            int firsTryFragen = 0;
+           
+            for (i = 0; i < thema.Length; i++)
             {
-                weitermachen = true;
-                while (weitermachen)
+                bool firstTry = true;
+                Console.Clear();
+                while (true)
                 {
-                    int fragenRichtig = 0;
-
-                    Console.ForegroundColor = ConsoleColor.Cyan;
-                    Console.WriteLine("Frage {0}: {1}", i + 1, frage);
-                    Console.Write("Antwort: ");
-                    Console.ResetColor();
-                    string antwort = Console.ReadLine();
-
-                    if (antwort == lösung[i])
+                    Console.Clear();
+                    Console.Write("Frage {0}: {1}\n\nAntwort:", i + 1, thema[(int)i]);
+                    antwort = Console.ReadLine();
+                    if (antwort == lösung[(int)i])
                     {
-                        Console.ForegroundColor = ConsoleColor.Green;
-                        Console.WriteLine("Das ist richtig sie haben {0} von {1} Fragen richtig beantwortet", fragenRichtig, i + 1);
-                        Console.ResetColor();
-                        weitermachen = false;
+                        if(firstTry)
+                        {
+                            firsTryFragen++;
+                        }
                         fragenRichtig++;
+                        Console.ForegroundColor = ConsoleColor.Green;
+                        Console.WriteLine("Das ist richtig");
+                        Console.ResetColor();
+                        Console.WriteLine("Sie haben {0} von {1} Fragen richtig beantwortet {2} davon mit einen Versuch", fragenRichtig, i + 1, firsTryFragen);
+                        Console.ForegroundColor = ConsoleColor.Yellow;
+                        Console.WriteLine("Enter um fortzufahren");
+                        Console.ResetColor();
+                        Console.ReadLine();
+                        Console.Clear();
+                        break;
                     }
                     else
                     {
-                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.ForegroundColor= ConsoleColor.Red;
                         Console.WriteLine("Das ist falsch");
+                        Console.ForegroundColor = ConsoleColor.Yellow;
+                        Console.WriteLine("Enter um es erneut zu versuchen\n" +
+                                          "skip um zur nächsten frage zu gehen und die Lösung anzuzeigen");
                         Console.ResetColor();
-                        weitermachen = true;
+                        antwort = Console.ReadLine();
+                        Console.Clear();
+                        firstTry = false;
                     }
-                    Console.ForegroundColor = ConsoleColor.Yellow;
-                    Console.WriteLine("Enter zum fortfahren");
-                    Console.ReadLine();
-                    Console.ResetColor();
-                    Console.Clear();
+                    if (antwort == "skip")
+                    {
+                        Console.WriteLine("Frage:\n{0}",thema[(int)i]);
+                        Console.WriteLine("Lösung:\n{0}",lösung[(int)i]);
+                        Console.ReadLine();
+                        break;
+                    }
                 }
+                Console.Clear();
+            }
+
+            Console.WriteLine("Das waren alle fragen zu diesem Thema.\n" +
+                              "Sie haben insgesamt {0} von {1} Fragen richtig beantwortet das sind {2:N0}%\n"  +
+                              "{3} Fragen davon mit einem Versuch\n" +
+                              "Geben sie \"menu\" ein um zum Hauptmenü zurückzukehren.\n" +
+                              "Enter zum verlassen", fragenRichtig, i, fragenRichtig / (i / 100), firsTryFragen);
+
+            antwort = Console.ReadLine();
+            if(antwort == "menu")
+            {
+                ShowMenu();
             }
         }
 
         static void Main(string[] args)
         {
-            string[] fragenVerzweigung = new string[10];
-            string[] lösungVerzweigung = new string[10];
+            Console.Clear();
+            string[] fragenVerzweigung = new string[3];
+            string[] lösungVerzweigung = new string[3];
             string[] fragenSchleifen = new string[10];
             string[] lösungSchleifen = new string[10];
             string[] fragenArrays = new string[10];
@@ -109,59 +135,21 @@ namespace _63_Interaktiv___Lernprogramm
             string[] fragenStrings = new string[10];
             string[] lösungStrings = new string[10];
 
-            fragenVerzweigung[0] = "Wozu braucht man Verzweigungen in Programmen nicht?\n" +
-                                   "A: Um Entscheidungen zu treffen\n" +
-                                   "B: Um komplexere Lösungen zu entwickeln\n" +
-                                   "C: Um Teil Code mehrmals auszuführen";
-            lösungVerzweigung[0] = "C";
+            fragenVerzweigung[0] = "Was passiert, wenn keine der Bedingungen in einer Falls-Anweisung erfüllt ist?\n" +
+                                   "a) Das Programm wird beendet.\n" +
+                                   "b) Es wird eine Fehlermeldung angezeigt.\n" +
+                                   "c) Der Codeblock unter \"else\" wird ausgeführt, falls vorhanden, ansonsten wird der Programmfluss fortgesetzt.\n";
+            lösungVerzweigung[0] = "c";
 
             fragenVerzweigung[1] = "Schreiben sie die erste Zeile einer wenn Funktion die wahr ist wenn a den wert 5 hat";
             lösungVerzweigung[1] = "if(a == 5)";
 
-            fragenVerzweigung[2] = "Geben sie den Wert ein den der folgende code ausgibt:\n" +
-                                   "    int a = 5;\n" +
-                                   "    int b = 2;\n" +
-                                   "    int c;\n" +
-                                   "\n" +
-                                   "    if(a < b)\n" +
-                                   "    {\n" +
-                                   "        Console.WriteLine(\"7\")\n" +
-                                   "    }\n" +
-                                   "    else if(a%b == 1)\n" +
-                                   "    {\n" +
-                                   "        Console.WriteLine(\"A\")\n" +
-                                   "    }\n" +
-                                   "    \n" +
-                                   "    switch(a++)\n" +
-                                   "    {\n" +
-                                   "        case 1:\n" +
-                                   "        case 2:\n" +
-                                   "            Console.WriteLine(\"3\")\n" +
-                                   "            c = 1\n" +
-                                   "            break;\n" +
-                                   "\n" +
-                                   "        case 3:\n" +
-                                   "        case 4:\n" +
-                                   "            Console.WriteLine(\"4\")\n" +
-                                   "            c = 2;\n" +
-                                   "            break;\n" +
-                                   "\n" +
-                                   "        case 5:\n" +
-                                   "        case 6:\n" +
-                                   "            Console.WriteLine(\"B\")\n" +
-                                   "            c = 3;\n" +
-                                   "            break;\n" +
-                                   "    }\n" +
-                                   "\n" +
-                                   "    if(c >= 3)\n" +
-                                   "    {\n" +
-                                   "        Console.WriteLine(\"B\")\n" +
-                                   "    }\n" +
-                                   "    else\n" +
-                                   "    {" +
-                                   "        Console.WriteLine(\"9\")\n" +
-                                   "    }";
-            lösungVerzweigung[2] = "ABC";
+            fragenVerzweigung[2] = "Welche sind keine logischen Operatoren?\n" +
+                                   "a) +, *, -, /\n" +
+                                   "b) &&, ||\n" +
+                                   "c) =, !=, <, >";
+
+            lösungVerzweigung[2] = "a";
 
             // Hauptmenü-Logik wie zuvor
             Console.Title = "63 Interaktiv - Lernprogramm";
@@ -209,7 +197,7 @@ namespace _63_Interaktiv___Lernprogramm
         // 3. Feedback und Erläuterungen: Gib Feedback und bei Bedarf Erklärungen für jede Antwort.
         // 4. Fortlaufende Bewertung: Führe eine fortlaufende Bewertung der Leistung des Benutzers durch.
         // 5. Modulspezifische Funktionen: Jedes Modul sollte spezifische Fragen und Logik zum Thema enthalten.
-        // 6. Interaktive Elemente: Integriere interaktive Elemente wie Übungen oder Quizfragen.
+        // 6. Interaktive Elemente: Integriere interaktive Elemente wie Übungen oder Quiz Fragen.
         // 7. Benutzerführung und Navigation: Stelle eine klare und intuitive Benutzerführung sicher.
         // 8. Anpassungsfähigkeit: Ermögliche Anpassungen an verschiedene Lernniveaus und Bedürfnisse.
 
